@@ -6,6 +6,9 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.io.File
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -13,38 +16,19 @@ import java.util.*
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var btnIn  : Button
-    lateinit var btnOut  : Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        btnIn = findViewById(R.id.btnCkin)
-        btnOut = findViewById(R.id.btnCkout)
+        //window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_FULLSCREEN
+        // Remember that you should never show the action bar if the
+        // status bar is hidden, so hide that too if necessary.
+//        actionBar?.hide()
 
-        btnIn.setOnClickListener(View.OnClickListener {
-            var files: Array<String> = applicationContext.fileList()
-            for (i in files) {
-                Log.d("list", i.toString())
-            }
+        var bottomNavigationView  = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
+        val navController = findNavController(R.id.fragment)
 
-            val file = File(applicationContext.filesDir, LocalDate.now().toString())
-            val tm = LocalDateTime.now()
-            file.appendText("check in:" + tm.hour + ":" + tm.minute + ":" + tm.second + "\n")
-            Toast.makeText(this, "check in:" + tm.hour + ":" + tm.minute + ":" + tm.second, Toast.LENGTH_SHORT).show()
-        })
-
-        btnOut.setOnClickListener(View.OnClickListener {
-            var files: Array<String> = applicationContext.fileList()
-            for (i in files) {
-                Log.d("list", i.toString())
-            }
-
-            val file = File(applicationContext.filesDir, LocalDate.now().toString())
-            val tm = LocalDateTime.now()
-            file.appendText("check out:" + tm.hour + ":" + tm.minute + ":" + tm.second + "\n")
-            Toast.makeText(this, "check in:" + tm.hour + ":" + tm.minute + ":" + tm.second, Toast.LENGTH_SHORT).show()
-        })
+        bottomNavigationView.setupWithNavController(navController)
     }
 }
