@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_homeFragment_to_record2"
             app:destination="@id/record" />
+        <action
+            android:id="@+id/action_homeFragment_to_reportFragment"
+            app:destination="@id/reportFragment" />
     </fragment>
     <fragment
         android:id="@+id/record"
@@ -20,7 +23,22 @@
         android:label="fragment_record"
         tools:layout="@layout/fragment_record" >
         <action
-            android:id="@+id/action_record_to_homeFragment2"
+            android:id="@+id/action_record_to_reportFragment"
+            app:destination="@id/reportFragment" />
+        <action
+            android:id="@+id/action_record_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reportFragment"
+        android:name="com.example.scheduletracer.ReportFragment"
+        android:label="fragment_report"
+        tools:layout="@layout/fragment_report" >
+        <action
+            android:id="@+id/action_reportFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_reportFragment_to_record"
+            app:destination="@id/record" />
     </fragment>
 </navigation>

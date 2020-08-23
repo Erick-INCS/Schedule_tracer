@@ -47,15 +47,17 @@ class Record : Fragment() {
 
         val file = File(requireContext().filesDir, LocalDate.now().toString())
 
-        val lines : List<String> = file.readLines()
-        var container = v.findViewById<LinearLayout>(R.id.records_container)
+        if (file.exists()) {
+            val lines : List<String> = file.readLines()
+            var container = v.findViewById<LinearLayout>(R.id.records_container)
 
-        if (container != null) {
-            for (i in lines) {
-                var txt = TextView(context)
-                txt.text = i + "\n"
-                txt.setTextSize(TypedValue.COMPLEX_UNIT_SP,18f)
-                container.addView(txt)
+            if (container != null) {
+                for (i in lines) {
+                    var txt = TextView(context)
+                    txt.text = i + "\n"
+                    txt.setTextSize(TypedValue.COMPLEX_UNIT_SP,18f)
+                    container.addView(txt)
+                }
             }
         }
 

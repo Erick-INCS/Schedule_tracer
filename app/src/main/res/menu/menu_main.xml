@@ -9,4 +9,8 @@
         android:id="@+id/record"
         android:icon="@drawable/ic_baseline_history_24"
         android:title="Record" />
+    <item
+        android:id="@+id/reportFragment"
+        android:icon="@drawable/ic_send"
+        android:title="Item" />
 </menu>
